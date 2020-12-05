@@ -1,5 +1,4 @@
 from itertools import count
-from sys import exit
 from typing import Tuple
 
 with open('input', 'r') as fd:
@@ -27,4 +26,4 @@ print(max(all_seat_numbers))
 for candidate in count(min(all_seat_numbers)):
     if candidate not in all_seat_numbers:
         print(candidate)
-        exit()
+        break
