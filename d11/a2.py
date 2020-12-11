@@ -16,7 +16,7 @@ def symbol_at(i: int, j: int, seats: List[str]) -> str:
     return EMPTY
 
 
-def is_occupied_in_direction(i: int, j: int, dir_i, dir_j, seats: List[str]) -> bool:
+def is_occupied_in_direction(i: int, j: int, dir_i: int, dir_j: int, seats: List[str]) -> bool:
     next_i, next_j = i + dir_i, j + dir_j
     while symbol_at(next_i, next_j, seats) == FLOOR:
         next_i, next_j = next_i + dir_i, next_j + dir_j
