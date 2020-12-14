@@ -22,4 +22,4 @@ for instruction in instructions:
     address = re.match(r'mem\[(\d+)\]', instruction[0]).group(1)
     memory[address] = apply_mask(write_mask, int(instruction[1]))
 
-print(sum(v for v in memory.values()))
+print(sum(memory.values()))
