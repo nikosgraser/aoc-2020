@@ -35,11 +35,6 @@ for i in range(len(bus_lines)):
 
 # This calculation finds _a_ solution - other solutions are obtained by adding multiples of N.
 # We are interested in the smallest positive solution.
-
-while result < 0:
-    result += N
-
-while result > N:
-    result -= N
+result %= N
 
 print(result)
