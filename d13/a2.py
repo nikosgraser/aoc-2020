@@ -24,12 +24,14 @@ def bezout_coeff(a: int, b: int) -> Tuple[int, int]:
     return s0, t0
 
 
+# For an explanation of how this works, look up the Chinese Remainder Theorem, e.g.:
+# https://en.wikipedia.org/wiki/Chinese_remainder_theorem#Existence_(direct_construction)
 N = product(bus_lines)
 result = 0
 for i in range(len(bus_lines)):
     a_i = bus_lines[i] - bl_offsets[i]
     n_i = bus_lines[i]
-    N_i = N // n_i
+    N_i = N // n_i  # Using a float value here with N / n_i results in overflow errors for high numbers
     M_i, _ = bezout_coeff(N_i, n_i)
     result += a_i * M_i * N_i
 
