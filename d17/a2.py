@@ -59,7 +59,6 @@ class ConwaySystem:
                                   range(x2 - 1, x2 + 2),
                                   range(x3 - 1, x3 + 2),
                               ))
-        neighborhood = list(map(list, neighborhood))
         return sum(1 for n0, n1, n2, n3 in neighborhood if self.state[n0, n1, n2, n3])
 
     def successor_at(self, x0: int, x1: int, x2: int, x3: int) -> bool:
