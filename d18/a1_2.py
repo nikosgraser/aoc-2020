@@ -45,8 +45,7 @@ def eval_simple_add_before_mult(expr: str) -> int:
 def eval_complex(expr: str, eval_simple: Callable[[str], int]) -> int:
     result = expr
     while PAREN_OPEN in result:
-        innermost_parens = re.findall(r'(\([0-9*+]+\))', result)
-        for match in innermost_parens:
+        for match in re.findall(r'(\([0-9*+]+\))', result):
             result = result.replace(match, str(eval_simple(match[1:-1])))
     return eval_simple(result)
 
