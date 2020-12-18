@@ -1,15 +1,11 @@
-from typing import Iterable, Tuple
-from functools import reduce
+from typing import Tuple
+from math import prod
 
 with open('input', 'r') as fd:
     bus_lines_raw = fd.readlines()[1].strip().split(',')
 
 bus_lines = list(map(int, filter(lambda bl: bl != 'x', bus_lines_raw)))
 bl_offsets = [i for i, n in enumerate(bus_lines_raw) if n != 'x']
-
-
-def product(it: Iterable[int]) -> int:
-    return reduce(lambda x, y: x * y, it, 1)
 
 
 def bezout_coeff(a: int, b: int) -> Tuple[int, int]:
@@ -26,7 +22,7 @@ def bezout_coeff(a: int, b: int) -> Tuple[int, int]:
 
 # For an explanation of how this works, look up the Chinese Remainder Theorem, e.g.:
 # https://en.wikipedia.org/wiki/Chinese_remainder_theorem#Existence_(direct_construction)
-N = product(bus_lines)
+N = prod(bus_lines)
 result = 0
 for i in range(len(bus_lines)):
     a_i = bus_lines[i] - bl_offsets[i]

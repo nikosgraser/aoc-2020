@@ -1,7 +1,7 @@
 import re
-from functools import reduce
+from math import prod
 
-from typing import Dict, Iterable, List, Tuple
+from typing import Dict, List, Tuple
 
 with open('input', 'r') as fd:
     rules_block, own_ticket_block, nearby_tickets_block = fd.read().split('\n\n')
@@ -19,10 +19,6 @@ for line in rules_block.split('\n'):
 
 own_ticket = list(map(int, own_ticket_block.split('\n')[1].split(',')))
 nearby_tickets = [list(map(int, line.split(','))) for line in nearby_tickets_block.strip().split('\n')[1:]]
-
-
-def product(it: Iterable[int]) -> int:
-    return reduce(lambda x, y: x * y, it, 1)
 
 
 def matches_rule(value: int, rule: Tuple[Tuple[int, int], Tuple[int, int]]) -> bool:
@@ -70,4 +66,4 @@ while len(field_candidates) > 0:
     del field_candidates[u_index]
 
 # Solution
-print(product(own_ticket[index] for field, index in field_mapping.items() if field.startswith('departure')))
+print(prod(own_ticket[index] for field, index in field_mapping.items() if field.startswith('departure')))

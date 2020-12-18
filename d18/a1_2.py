@@ -1,7 +1,7 @@
 import re
-from functools import reduce
+from math import prod
 
-from typing import Callable, Iterable
+from typing import Callable
 
 with open('input', 'r') as fd:
     lines = [line.strip().replace(' ', '') for line in fd.readlines()]
@@ -22,10 +22,6 @@ def apply_operator(operator: str, left: int, right: int):
     return right
 
 
-def product(it: Iterable[int]) -> int:
-    return reduce(lambda x, y: x * y, it, 1)
-
-
 def eval_simple_no_precedence_rules(expr: str) -> int:
     cursor, value = 0, 0
     operator = SET
@@ -43,7 +39,7 @@ def eval_simple_no_precedence_rules(expr: str) -> int:
 
 
 def eval_simple_add_before_mult(expr: str) -> int:
-    return product(sum(int(summand) for summand in factor.split(ADD)) for factor in expr.split(MULT))
+    return prod(sum(int(summand) for summand in factor.split(ADD)) for factor in expr.split(MULT))
 
 
 def eval_complex(expr: str, eval_simple: Callable[[str], int]) -> int:
